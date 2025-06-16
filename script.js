@@ -6,6 +6,10 @@ function closePopup(){
     warenkorp.style.display = 'none';
 }
 
+const width = window.innerWidth;
+const height = window.innerHeight;
+
+
 
 btnWarenkorp.addEventListener('click', function(){
     warenkorp.style.display = "block";

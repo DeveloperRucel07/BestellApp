@@ -2,49 +2,49 @@ let gerichteRef = document.getElementById('gerichte');
 
 let beilageRef = document.getElementById('beilage');
 
-function loadWarenkorb() {
-    return JSON.parse(localStorage.getItem("warenKorpsList")) || [];
+function loadProductInCard() {
+    return JSON.parse(localStorage.getItem("ProductInCard")) || [];
 }
 
-function saveWarenkorb(list) {
-    localStorage.setItem("warenKorpsList", JSON.stringify(list));
+function saveProductInCard(list) {
+    localStorage.setItem("ProductInCard", JSON.stringify(list));
 }
 
-let warenKorpsList = loadWarenkorb();
+let ProductInCard = loadProductInCard();
 
 function initiate(){
-    loadGerichte();
-    loadBeilage();
-    showWarenKorp();
+    loadDyshes();
+    loadSideDish();
+    showProductToCard();
     showTotalPrice();
 }
 
-// myDisches
+// myDishes
 
-function loadGerichte(){
+function loadDyshes(){
 
-    for(let i= 0; i< myDisches.length; i++){
-        gerichteRef.innerHTML += templateGerichte(i);
+    for(let i= 0; i< myDishes.length; i++){
+        gerichteRef.innerHTML += templateDyshes(i);
     }
 }
 
 
-function loadBeilage(){
-    for(let i= 0; i< myBeilage.length; i++){
-        beilageRef.innerHTML += templateBeilage(i);
+function loadSideDish(){
+    for(let i= 0; i< mySideDishes.length; i++){
+        beilageRef.innerHTML += templateSideDishes(i);
     }
 }
 
 
-function showWarenKorp(){
-    let warenKorpsList = loadWarenkorb();
+function showProductToCard(){
+    ProductInCard = loadProductInCard();
     let warenkorb = document.getElementById('waren-liste');
     warenkorb.innerHTML = '';
-    if(warenKorpsList.length == 0){
+    if(ProductInCard.length == 0){
         warenkorb.innerHTML = keinArtikel();
     }else{
-        for(let i=0; i< warenKorpsList.length; i++){
-            warenkorb.innerHTML += templateAddToWarenkorp(i);
+        for(let i=0; i< ProductInCard.length; i++){
+            warenkorb.innerHTML += templateAddProductToCard(i);
         }
     }
     
@@ -54,20 +54,20 @@ function showWarenKorp(){
 
 
 function showTotalPrice(){
-    let warenKorpsList = loadWarenkorb();
+    ProductInCard = loadProductInCard();
     let gesamtePreisRef = document.getElementById('gesammte-preis');
     const Lieferpreis = 8;
     let TotalPriceWaren = 0;
     let totalPrice = 0;
-    if(warenKorpsList.length == 0){
+    if(ProductInCard.length == 0){
         gesamtePreisRef.classList.add('desactive');
         gesamtePreisRef.innerHTML = '';
 
     }else{
         gesamtePreisRef.classList.remove('desactive');
         gesamtePreisRef.innerHTML = '';
-        for(let index=0;index< warenKorpsList.length; index++){
-            let uniqueTotalPrice = warenKorpsList[index].price* warenKorpsList[index].quantity;
+        for(let index=0;index< ProductInCard.length; index++){
+            let uniqueTotalPrice = ProductInCard[index].price* ProductInCard[index].quantity;
             TotalPriceWaren += uniqueTotalPrice;
             totalPrice = TotalPriceWaren + Lieferpreis;
         }
@@ -75,80 +75,91 @@ function showTotalPrice(){
 
     }
 }
+function addQuantity(name){
+    
+    let index = ProductInCard.findIndex(
+       product => product.name === name
+    );
+    if (index !== -1) {
+        ProductInCard[index].quantity ++;
+        saveProductInCard(ProductInCard);
+        showProductToCard();
+    } else {
+        return
+    }
 
+}
 
-function addGerichtToWarenkorp(i, event){
-    let warenKorpsList = loadWarenkorb();
+function addDyshToCard(i, event){
+    ProductInCard = loadProductInCard();
 
-    let gericht = myDisches[i];
-    const newInKorp = {
-        name : gericht.name,
-        price : gericht.preise,
+    let dish = myDishes[i];
+    
+    const newInCard = {
+        name : dish.name,
+        price : dish.preise,
         quantity : 1
     }
 
-    let isAlreadyInKorp  = warenKorpsList.find(
-        (warenKorp) =>warenKorp.name === newInKorp.name
+    let isAlreadyInKorp  = ProductInCard.find(
+        (product) =>product.name === newInCard.name
     );
-    console.log(warenKorpsList);
     if(isAlreadyInKorp){
         isAlreadyInKorp.quantity++;
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp();
+        saveProductInCard(ProductInCard);
+        showProductToCard();
     }else{
-        warenKorpsList.push(newInKorp);
-        console.log(warenKorpsList);
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp();
-
+        ProductInCard.push(newInCard);
+        saveProductInCard(ProductInCard);
+        showProductToCard();
     }
     event.stopPropagation(); 
 }
-function addBeilageToWarenkorp(i,event){
+function addSideDyshToCard(i,event){
     
-    let warenKorpsList = loadWarenkorb();
-    let beilage = myBeilage[i];
-    const newInKorp = {
-        name : beilage.name,
-        price : beilage.preise,
+    ProductInCard = loadProductInCard();
+    let sideDish = mySideDishes[i];
+    const newInCard = {
+        name : sideDish.name,
+        price : sideDish.preise,
         quantity : 1
     }
-    let isAlreadyInKorp  = warenKorpsList.find(
-        (warenKorp) =>warenKorp.name === newInKorp.name
+    let isAlreadyInKorp  = ProductInCard.find(
+        (product) =>product.name === newInCard.name
     );
     if(isAlreadyInKorp){
         isAlreadyInKorp.quantity++;
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp();
+        saveProductInCard(ProductInCard);
+        showProductToCard();
     }else{
-        warenKorpsList.push(newInKorp);
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp();
+        ProductInCard.push(newInCard);
+        saveProductInCard(ProductInCard);
+        showProductToCard();
     }
     
     event.stopPropagation();
 }
 
-function reduceGerichtInKorp(index) {
-    let warenKorpsList = loadWarenkorb();
-    if (warenKorpsList[index].quantity && warenKorpsList[index].quantity > 1) {
-        warenKorpsList[index].quantity--;
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp();
+function reduceProductInCard(index) {
+    ProductInCard = loadProductInCard();
+    if (ProductInCard[index].quantity && ProductInCard[index].quantity > 1) {
+        ProductInCard[index].quantity--;
+        saveProductInCard(ProductInCard);
+        showProductToCard();
     } else {
-        warenKorpsList.splice(index, 1);
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp();
+        ProductInCard.splice(index, 1);
+        saveProductInCard(ProductInCard);
+        showProductToCard();
     }
     
 }
 
-function removeFromWarenkorp(index){
-    let warenKorpsList = loadWarenkorb();
-    if(warenKorpsList[index]){
-        warenKorpsList.splice(index, 1);
-        saveWarenkorb(warenKorpsList);
-        showWarenKorp(); 
+function removeFromCard(index){
+    ProductInCard = loadProductInCard();
+    if(ProductInCard[index]){
+        ProductInCard.splice(index, 1);
+        saveProductInCard(ProductInCard);
+        showProductToCard(); 
     }
 }
 

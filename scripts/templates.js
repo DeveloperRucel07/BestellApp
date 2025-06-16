@@ -1,26 +1,26 @@
 
 
-function templateGerichte(i){
+function templateDyshes(i){
     return `
-        <div class="card" onclick="addGerichtToWarenkorp(${i}, event)">
+        <div class="card" onclick="addDyshToCard(${i}, event)">
             <div class="card-body">
-                <h5 class="card-title">${myDisches[i].name}</h5>
-                <p class="card-text">${myDisches[i].description}</p>
-                <p class="card-text card-price">${myDisches[i].preise}€</p>
-                <button class="btn btn-primary add-warenkorp"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" onclick="addGerichtToWarenkorp(${i}, event)"></button>
+                <h5 class="card-title">${myDishes[i].name}</h5>
+                <p class="card-text">${myDishes[i].description}</p>
+                <p class="card-text card-price">${myDishes[i].preise}€</p>
+                <button class="btn btn-primary add-warenkorp"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" onclick="addDyshToCard(${i}, event)"></button>
             </div>
         </div>
     
     `;
 }
-function templateBeilage(i){
+function templateSideDishes(i){
     return `
-        <div class="card" onclick="addBeilageToWarenkorp(${i}, event)">
+        <div class="card" onclick="addDyshToCard(${i}, event)">
             <div class="card-body">
-                <h5 class="card-title">${myBeilage[i].name}</h5>
-                <p class="card-text">${myBeilage[i].description}</p>
-                <p class="card-text card-price">${myBeilage[i].preise}€</p>
-                <button class="btn btn-primary add-warenkorp" onclick="addBeilageToWarenkorp(${i}, event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
+                <h5 class="card-title">${mySideDishes[i].name}</h5>
+                <p class="card-text">${mySideDishes[i].description}</p>
+                <p class="card-text card-price">${mySideDishes[i].preise}€</p>
+                <button class="btn btn-primary add-warenkorp" onclick="addDyshToCard(${i}, event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
             </div>
         </div>
     
@@ -28,17 +28,17 @@ function templateBeilage(i){
 }
 
 
-function templateAddToWarenkorp(index){
+function templateAddProductToCard(index){
     return `
         <hr>
         <div class="waren">
-            <h5>${warenKorpsList[index] && warenKorpsList[index].name ? warenKorpsList[index].name : 'N/A'}</h5>
+            <h5>${ProductInCard[index] && ProductInCard[index].name ? ProductInCard[index].name : 'N/A'}</h5>
             <div class="icon-waren">
-                <button class="btn"  onclick="reduceGerichtInKorp(${index})"><img src="./assets/icons/remove_icon.png" alt=" remove warenkorp" class="waren-icons"></button>
-                <span>${warenKorpsList[index]?.quantity} x</span>
-                <button class="btn " onclick="addGerichtToWarenkorp(${index})"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" class="waren-icons"></button>
-                <span>${((warenKorpsList[index]?.price)* (warenKorpsList[index]?.quantity)).toFixed(2) }€</span>
-                <button class="btn " onclick="removeFromWarenkorp(${index})"><img src="./assets/icons/trash_icon.png" alt="delete warenkorp" class="waren-icons"></button>
+                <button class="btn"  onclick="reduceProductInCard(${index})"><img src="./assets/icons/remove_icon.png" alt=" remove warenkorp" class="waren-icons"></button>
+                <span>${ProductInCard[index]?.quantity} x</span>
+                <button class="btn " onclick="addQuantity('${ProductInCard[index].name}')"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" class="waren-icons"></button>
+                <span>${((ProductInCard[index]?.price)* (ProductInCard[index]?.quantity)).toFixed(2) }€</span>
+                <button class="btn " onclick="removeFromCard(${index})"><img src="./assets/icons/trash_icon.png" alt="delete warenkorp" class="waren-icons"></button>
             </div>
         </div>
     `;

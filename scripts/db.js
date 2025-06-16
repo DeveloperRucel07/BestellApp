@@ -1,4 +1,4 @@
-let myDisches = [
+let myDishes = [
   {
     "name": "Sauerbraten",
     "description": "Marinierter Rinderbraten, langsam geschmort, serviert mit Rotkohl und Klößen.",
@@ -53,7 +53,7 @@ let myDisches = [
 ];
 
 
-let myBeilage = [
+let mySideDishes = [
   {
     "name": "Kartoffelknödel",
     "description": "Weiche, runde Knödel aus gekochten Kartoffeln, ideal zu Braten oder Soßen.",
