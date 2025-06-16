@@ -15,12 +15,12 @@ function templateDyshes(i){
 }
 function templateSideDishes(i){
     return `
-        <div class="card" onclick="addDyshToCard(${i}, event)">
+        <div class="card" onclick="addSideDyshToCard(${i}, event)">
             <div class="card-body">
                 <h5 class="card-title">${mySideDishes[i].name}</h5>
                 <p class="card-text">${mySideDishes[i].description}</p>
                 <p class="card-text card-price">${mySideDishes[i].preise}€</p>
-                <button class="btn btn-primary add-warenkorp" onclick="addDyshToCard(${i}, event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
+                <button class="btn btn-primary add-warenkorp" onclick="addSideDyshToCard(${i}, event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
             </div>
         </div>
     
