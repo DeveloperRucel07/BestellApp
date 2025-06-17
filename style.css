@@ -61,7 +61,7 @@ hr{
     height: 5px;
     border: 3px solid grey;    
 }
-.warenkorp-title{
+.basket-title{
     text-align: center;
 }
 
@@ -170,7 +170,7 @@ a:hover{
     border-radius: 0 !important;
 }
 
-.add-warenkorp{
+.add-to-basket{
     position: absolute;
     top: 0;
     right: 0;
@@ -179,15 +179,16 @@ a:hover{
     border-radius: 0 !important;
 }
 
-.add-warenkorp:hover{
+.add-to-basket:hover{
     background-color: grey !important;
     border: 3px solid grey !important;
 
 }
-.warenkorp-title{
+.basket-title{
     font-size: 32px;
     margin: 5px;
     padding: 5px;
+    box-shadow: 0 2px 0 0 grey;
 
 }
 .kein-artikel{
@@ -202,7 +203,7 @@ a:hover{
 
 
 
-.add-warenkorp img{
+.add-to-basket img{
     width: 30px;
     height: 30px;
 }
@@ -212,17 +213,17 @@ a:hover{
     font-weight: 500;
 }
 
-.warenkorp-responsive{
+.basket-responsive{
     display:none;
 }
 
-.warenkorp-responsive-btn{
+.basket-responsive-btn{
     border-radius: 0;
     border: none;
     width: 100%;
 }
 
-.popup-warenkorp{
+.popup-basket{
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -235,8 +236,8 @@ a:hover{
 footer{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 
@@ -275,7 +276,7 @@ footer{
         width: 100%;
     }
 
-    .warenkorp-responsive{
+    .basket-responsive{
         display: flex;
         position: sticky;
         bottom: 10px;

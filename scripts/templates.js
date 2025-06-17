@@ -1,12 +1,12 @@
 
 function templateDyshes(i){
     return `
-        <div class="card" onclick="addDyshToCard(${i}, event)">
+        <div class="card" onclick="addDyshToCard(myDishes[${i}], event)">
             <div class="card-body">
                 <h5 class="card-title">${myDishes[i].name}</h5>
                 <p class="card-text">${myDishes[i].description}</p>
                 <p class="card-text card-price">${myDishes[i].preise}€</p>
-                <button class="btn btn-primary add-warenkorp"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" onclick="addDyshToCard(${i}, event)"></button>
+                <button class="btn btn-primary add-to-basket"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" onclick="addDyshToCard(myDishes[${i}], event)"></button>
             </div>
         </div>
     
@@ -16,12 +16,12 @@ function templateDyshes(i){
 
 function templateSideDishes(i){
     return `
-        <div class="card" onclick="addSideDyshToCard(${i}, event)">
+        <div class="card" onclick="addDyshToCard(mySideDishes[${i}], event)">
             <div class="card-body">
                 <h5 class="card-title">${mySideDishes[i].name}</h5>
                 <p class="card-text">${mySideDishes[i].description}</p>
                 <p class="card-text card-price">${mySideDishes[i].preise}€</p>
-                <button class="btn btn-primary add-warenkorp" onclick="addSideDyshToCard(${i}, event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
+                <button class="btn btn-primary add-to-basket" onclick="addDyshToCard(mySideDishes[${i}], event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
             </div>
         </div>
     
@@ -75,6 +75,6 @@ function zeroProductInCard(){
 
 function linkTemplateResponsive(){
     return `
-        <button class="btn btn-primary warenkorp-responsive-btn" onclick = "closePopup()">Warenkorp</button>
+        <button class="btn btn-primary basket-responsive-btn" onclick = "closePopup()">Warenkorp</button>
     `;
 }
