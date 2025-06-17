@@ -15,18 +15,19 @@ function saveProductInCard(list) {
 let ProductInCard = loadProductInCard();
 
 function initiate(){
-    loadAllDyshes();
+    loadAlldishes();
     showProductToCard();
     showTotalPrice();
 }
 
 
-function loadAllDyshes(){
+function loadAlldishes(){
     for(let i= 0; i< myDishes.length; i++){
-        dishRef.innerHTML += templateDyshes(i);
+        dishRef.innerHTML += templateDishes('myDishes', i);
+
     }
     for(let i= 0; i< mySideDishes.length; i++){
-        sideDishRef.innerHTML += templateSideDishes(i);
+        sideDishRef.innerHTML += templateDishes('mySideDishes', i);
     }
 }
 
@@ -82,8 +83,10 @@ function addQuantity(name){
 }
 
 
-function addDyshToCard(product, event){
+function addDyshToCard(table, index, event){
     ProductInCard = loadProductInCard();
+    let dishList = table === 'myDishes' ? myDishes : mySideDishes;
+    let product = dishList[index];
     const newInCard = {
         name : product.name,
         price : product.preise,
@@ -94,13 +97,11 @@ function addDyshToCard(product, event){
     );
     if(isAlreadyInKorp){
         isAlreadyInKorp.quantity++;
-        saveProductInCard(ProductInCard);
-        showProductToCard();
     }else{
         ProductInCard.push(newInCard);
-        saveProductInCard(ProductInCard);
-        showProductToCard();
     }
+    saveProductInCard(ProductInCard);
+    showProductToCard();
     event.stopPropagation(); 
 }
 
@@ -109,14 +110,11 @@ function reduceProductInCard(index) {
     ProductInCard = loadProductInCard();
     if (ProductInCard[index].quantity && ProductInCard[index].quantity > 1) {
         ProductInCard[index].quantity--;
-        saveProductInCard(ProductInCard);
-        showProductToCard();
     } else {
         ProductInCard.splice(index, 1);
-        saveProductInCard(ProductInCard);
-        showProductToCard();
     }
-    
+    saveProductInCard(ProductInCard);
+    showProductToCard();
 }
 
 

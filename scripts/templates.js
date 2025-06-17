@@ -1,27 +1,12 @@
-
-function templateDyshes(i){
+function templateDishes(table, i){
+    const dish = (table === 'myDishes') ? myDishes[i] : mySideDishes[i];
     return `
-        <div class="card" onclick="addDyshToCard(myDishes[${i}], event)">
+        <div class="card" onclick="addDyshToCard('${table}', ${i}, event)">
             <div class="card-body">
-                <h5 class="card-title">${myDishes[i].name}</h5>
-                <p class="card-text">${myDishes[i].description}</p>
-                <p class="card-text card-price">${myDishes[i].preise}€</p>
-                <button class="btn btn-primary add-to-basket"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" onclick="addDyshToCard(myDishes[${i}], event)"></button>
-            </div>
-        </div>
-    
-    `;
-}
-
-
-function templateSideDishes(i){
-    return `
-        <div class="card" onclick="addDyshToCard(mySideDishes[${i}], event)">
-            <div class="card-body">
-                <h5 class="card-title">${mySideDishes[i].name}</h5>
-                <p class="card-text">${mySideDishes[i].description}</p>
-                <p class="card-text card-price">${mySideDishes[i].preise}€</p>
-                <button class="btn btn-primary add-to-basket" onclick="addDyshToCard(mySideDishes[${i}], event)"><img src="./assets/icons/add_icon.png" alt=" add warenkorp"></button>
+                <h5 class="card-title">${dish.name}</h5>
+                <p class="card-text">${dish.description}</p>
+                <p class="card-text card-price">${dish.preise}€</p>
+                <button class="btn btn-primary add-to-basket"><img src="./assets/icons/add_icon.png" alt=" add warenkorp" onclick="addDyshToCard('${table}', ${i}, event)"></button>
             </div>
         </div>
     
