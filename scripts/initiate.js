@@ -128,6 +128,8 @@ function removeFromCard(index){
         showProductToCard(); 
     }
 }
+
+
 function toggleCard(){
     let cardTitle = document.getElementById('basket-title');
     let cardProductList = document.getElementById('basket-list');
@@ -136,6 +138,7 @@ function toggleCard(){
     cardProductList.classList.toggle('desactive');
     cardTotalPrice.classList.toggle('desactive');
 }
+
 
 function orderAllInCard() {
     let cardOrder = document.getElementById('order');
