@@ -1,23 +1,21 @@
-let btnWarenkorp = document.getElementById('btn-warenkorp');
-let warenkorp = document.getElementById('warenkorp');
+let openCardBtn = document.getElementById('btn-warenkorp');
+let cardProduct = document.getElementById('warenkorp');
 let content = document.getElementById('content');
-let warenkorpTitle = document.getElementById('warenkorp-title');
+let cardTitle = document.getElementById('warenkorp-title');
 
 function closePopup(){
     content.classList.toggle('desactive');
-    warenkorp.classList.toggle('active');
-    warenkorp.classList.toggle('desactive');
-    
-
+    cardProduct.classList.toggle('active');
+    cardProduct.classList.toggle('desactive');
 }
 
 
-btnWarenkorp.addEventListener('click', function(){
-    warenkorp.classList.toggle('active');
-    warenkorp.classList.toggle('desactive');
-    warenkorp.classList.add('popup-warenkorp');
+openCardBtn.addEventListener('click', function(){
+    cardProduct.classList.toggle('active');
+    cardProduct.classList.toggle('desactive');
+    cardProduct.classList.add('popup-warenkorp');
     content.classList.toggle('desactive');
-    warenkorpTitle.innerHTML = linkTemplateResponsive();
+    cardTitle.innerHTML = linkTemplateResponsive();
 });
 
 

@@ -1,5 +1,4 @@
 
-
 function templateDyshes(i){
     return `
         <div class="card" onclick="addDyshToCard(${i}, event)">
@@ -13,6 +12,8 @@ function templateDyshes(i){
     
     `;
 }
+
+
 function templateSideDishes(i){
     return `
         <div class="card" onclick="addSideDyshToCard(${i}, event)">
@@ -45,17 +46,21 @@ function templateAddProductToCard(index){
 }
 
 
-
-function templateTotalPrice(totalPrice, Lieferpreis, TotalPriceWaren){
+function templateTotalPrice(totalPrice, deliveryPrice, totalPriceProduct){
     return `
         <hr>
-        <p class="endprice"><span>Zwischenpreise</span> <span>${TotalPriceWaren.toFixed(2)}€</span></p>
-        <p class="endprice"> <span>Lieferpreis</span> <span>${Lieferpreis.toFixed(2)}€</span></p>
+        <p class="endprice"><span>Zwischenpreise</span> <span>${totalPriceProduct.toFixed(2)}€</span></p>
+        <p class="endprice"> <span>Lieferpreis</span> <span>${deliveryPrice.toFixed(2)}€</span></p>
         <strong><p class="endprice"><span>Gesamt</span> <span>${totalPrice.toFixed(2)}€</span></p></strong>
+        <div class="justify-content-center align-items-center d-flex ">
+            <button class="btn btn-info text-center m-3 w-75" onclick = "orderAllInCard()">Einkauf Bestätigen</button>
+        </div>
     
     `;
 }
-function keinArtikel(){
+
+
+function zeroProductInCard(){
     return `
         <div class="card text-center mb-3 kein-artikel" >
         <div class="card-body">
@@ -66,6 +71,7 @@ function keinArtikel(){
     
     `;
 }
+
 
 function linkTemplateResponsive(){
     return `

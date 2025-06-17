@@ -1,14 +1,16 @@
-let gerichteRef = document.getElementById('gerichte');
+let dishRef = document.getElementById('gerichte');
+let sideDishRef = document.getElementById('beilage');
 
-let beilageRef = document.getElementById('beilage');
 
 function loadProductInCard() {
     return JSON.parse(localStorage.getItem("ProductInCard")) || [];
 }
 
+
 function saveProductInCard(list) {
     localStorage.setItem("ProductInCard", JSON.stringify(list));
 }
+
 
 let ProductInCard = loadProductInCard();
 
@@ -19,32 +21,31 @@ function initiate(){
     showTotalPrice();
 }
 
-// myDishes
 
 function loadDyshes(){
 
     for(let i= 0; i< myDishes.length; i++){
-        gerichteRef.innerHTML += templateDyshes(i);
+        dishRef.innerHTML += templateDyshes(i);
     }
 }
 
 
 function loadSideDish(){
     for(let i= 0; i< mySideDishes.length; i++){
-        beilageRef.innerHTML += templateSideDishes(i);
+        sideDishRef.innerHTML += templateSideDishes(i);
     }
 }
 
 
 function showProductToCard(){
     ProductInCard = loadProductInCard();
-    let warenkorb = document.getElementById('waren-liste');
-    warenkorb.innerHTML = '';
+    let cardList = document.getElementById('waren-liste');
+    cardList.innerHTML = '';
     if(ProductInCard.length == 0){
-        warenkorb.innerHTML = keinArtikel();
+        cardList.innerHTML = zeroProductInCard();
     }else{
         for(let i=0; i< ProductInCard.length; i++){
-            warenkorb.innerHTML += templateAddProductToCard(i);
+            cardList.innerHTML += templateAddProductToCard(i);
         }
     }
     
@@ -52,29 +53,29 @@ function showProductToCard(){
 }
 
 
-
 function showTotalPrice(){
     ProductInCard = loadProductInCard();
-    let gesamtePreisRef = document.getElementById('gesammte-preis');
-    const Lieferpreis = 8;
-    let TotalPriceWaren = 0;
+    let allPriceRef = document.getElementById('gesammte-preis');
+    const deliveryPrice = 8;
+    let totalPriceProduct = 0;
     let totalPrice = 0;
     if(ProductInCard.length == 0){
-        gesamtePreisRef.classList.add('desactive');
-        gesamtePreisRef.innerHTML = '';
-
+        allPriceRef.classList.add('desactive');
+        allPriceRef.innerHTML = '';
     }else{
-        gesamtePreisRef.classList.remove('desactive');
-        gesamtePreisRef.innerHTML = '';
+        allPriceRef.classList.remove('desactive');
+        allPriceRef.innerHTML = '';
         for(let index=0;index< ProductInCard.length; index++){
             let uniqueTotalPrice = ProductInCard[index].price* ProductInCard[index].quantity;
-            TotalPriceWaren += uniqueTotalPrice;
-            totalPrice = TotalPriceWaren + Lieferpreis;
+            totalPriceProduct += uniqueTotalPrice;
+            totalPrice = totalPriceProduct + deliveryPrice;
         }
-        gesamtePreisRef.innerHTML += templateTotalPrice(totalPrice, Lieferpreis, TotalPriceWaren);
+        allPriceRef.innerHTML += templateTotalPrice(totalPrice, deliveryPrice, totalPriceProduct);
 
     }
 }
+
+
 function addQuantity(name){
     
     let index = ProductInCard.findIndex(
@@ -89,6 +90,7 @@ function addQuantity(name){
     }
 
 }
+
 
 function addDyshToCard(i, event){
     ProductInCard = loadProductInCard();
@@ -115,6 +117,8 @@ function addDyshToCard(i, event){
     }
     event.stopPropagation(); 
 }
+
+
 function addSideDyshToCard(i,event){
     
     ProductInCard = loadProductInCard();
@@ -140,6 +144,7 @@ function addSideDyshToCard(i,event){
     event.stopPropagation();
 }
 
+
 function reduceProductInCard(index) {
     ProductInCard = loadProductInCard();
     if (ProductInCard[index].quantity && ProductInCard[index].quantity > 1) {
@@ -154,6 +159,7 @@ function reduceProductInCard(index) {
     
 }
 
+
 function removeFromCard(index){
     ProductInCard = loadProductInCard();
     if(ProductInCard[index]){
@@ -161,6 +167,26 @@ function removeFromCard(index){
         saveProductInCard(ProductInCard);
         showProductToCard(); 
     }
+}
+function toggleCard(){
+    let cardTitle = document.getElementById('warenkorp-title');
+    let cardProductList = document.getElementById('waren-liste');
+    let cardTotalPrice = document.getElementById('gesammte-preis'); 
+    cardTitle.classList.toggle('desactive');
+    cardProductList.classList.toggle('desactive');
+    cardTotalPrice.classList.toggle('desactive');
+}
+
+function orderAllInCard() {
+    let cardOrder = document.getElementById('order');
+    toggleCard();
+    cardOrder.innerHTML = `<h5>Vielen Dank für Ihre Bestellung!</h5>`;
+    localStorage.removeItem("ProductInCard");
+    setTimeout(() => {
+        showProductToCard();
+        toggleCard();
+        cardOrder.innerHTML = '';
+    }, 2000); 
 }
 
 

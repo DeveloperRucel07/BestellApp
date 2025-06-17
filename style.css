@@ -19,7 +19,7 @@ header{
 }
 
 .container-fluid{
-    display: flex !important;
+    display: flex;
     flex-direction: row;
 
 }
@@ -37,6 +37,7 @@ header{
     overflow-y: auto;
     padding-right: 8px; 
     background-color: white;
+    margin-bottom: 20px;
     box-shadow: 0px 0px 12px 2px rgba(24, 15, 15, 0.339);
 }
 
@@ -75,8 +76,8 @@ hr{
     padding-right: 20px;
 }
 .waren-icons{
-    width: 30px !important;
-    height: 30px !important;
+    width: 30px;
+    height: 30px;
 }
 .endprice{
     padding-left: 20px;
@@ -85,6 +86,16 @@ hr{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.order{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+    color: #F08832;
+
 }
 
 .navbar-brand img{
@@ -206,9 +217,9 @@ a:hover{
 }
 
 .warenkorp-responsive-btn{
-    border-radius: 0 !important;
-    border: none !important;
-    width: 100% !important;
+    border-radius: 0;
+    border: none;
+    width: 100%;
 }
 
 .popup-warenkorp{
@@ -216,7 +227,7 @@ a:hover{
     justify-content: start;
     flex-direction: column;
     background-color: #fff;
-    opacity: 1 !important;
+    opacity: 1;
     width: 100%;
     height: 100vh;
 }
@@ -266,6 +277,9 @@ footer{
 
     .warenkorp-responsive{
         display: flex;
+        position: sticky;
+        bottom: 10px;
+
     }
 
 }
