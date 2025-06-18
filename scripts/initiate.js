@@ -47,25 +47,32 @@ function showProductToCard(){
 }
 
 
+const deliveryPrice = 8;
+let totalPriceProduct = 0;
+let totalPrice = 0;
+
+
 function showTotalPrice(){
     ProductInCard = loadProductInCard();
     let allPriceRef = document.getElementById('basket-price');
-    const deliveryPrice = 8;
-    let totalPriceProduct = 0;
-    let totalPrice = 0;
     if(ProductInCard.length == 0){
         allPriceRef.classList.add('desactive');
         allPriceRef.innerHTML = '';
     }else{
         allPriceRef.classList.remove('desactive');
         allPriceRef.innerHTML = '';
-        for(let index=0;index< ProductInCard.length; index++){
+        calculateTotalPrice();
+        allPriceRef.innerHTML += templateTotalPrice(totalPrice, deliveryPrice, totalPriceProduct);
+    }
+}
+
+
+function calculateTotalPrice(){
+    for(let index=0;index< ProductInCard.length; index++){
             let uniqueTotalPrice = ProductInCard[index].price* ProductInCard[index].quantity;
             totalPriceProduct += uniqueTotalPrice;
             totalPrice = totalPriceProduct + deliveryPrice;
         }
-        allPriceRef.innerHTML += templateTotalPrice(totalPrice, deliveryPrice, totalPriceProduct);
-    }
 }
 
 
